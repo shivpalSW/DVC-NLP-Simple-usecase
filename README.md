@@ -3,7 +3,7 @@ DVC NLP project
 
 ## Reference Repository:
 
-[Official reference repo](https://github.com/iterative/example-get-started)
+1. [Official reference repo](https://github.com/iterative/example-get-started)
 
 ### STEP 01- Create a repository by using template repository
 
