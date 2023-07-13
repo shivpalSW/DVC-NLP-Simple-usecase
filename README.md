@@ -1,7 +1,6 @@
 
 ## DVC NLP project 
-
-### <style = italic> Problem statement for NLP Project: If stackoverflow comments are belongs to "Python" language or not.It is a binary classification type of project
+#### Problem statement for NLP Project: If stackoverflow comments are belongs to "Python" language or not.It is a binary classification type of project
 
 ## Reference Repository:
 
