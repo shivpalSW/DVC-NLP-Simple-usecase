@@ -8,6 +8,8 @@ PyYAML
 Scipy
 scikit-learn
 lxml
+argparse
+
 
 
 ### local packages -
