@@ -6,7 +6,7 @@
 
 1. [Official reference repo](https://github.com/iterative/example-get-started)
 2. [DVC Studio](https://studio.iterative.ai/)
-3. [My DVC Studio View](https://studio.iterative.ai/user/shivpalSW/projects/dvc-DL-tensorflow-aiops-lhrxwfrnmf)
+3. [My DVC Studio View]([https://studio.iterative.ai/user/shivpalSW/projects/dvc-DL-tensorflow-aiops-lhrxwfrnmf](https://studio.iterative.ai/user/shivpalSW/projects/DVC-NLP-Simple-usecase-2athy60zhk))
 
 ### STEP 01- Create a repository by using template repository
 
