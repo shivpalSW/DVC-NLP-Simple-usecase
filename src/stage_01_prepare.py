@@ -2,10 +2,10 @@ import argparse
 import os
 from tqdm import tqdm
 import logging
-from src.utils.common import read_yaml
+from src.utils.common import read_yaml,create_directories
 import json
 import shutil
-
+import random
 
 
 STAGE = "ONE" ## <<< change stage name 
@@ -19,10 +19,23 @@ logging.basicConfig(
 
 
 def main(config_path, params_path):
-    ## read config files
+    ## converting XML data to csv format
     config = read_yaml(config_path)
     params = read_yaml(params_path)
     pass
+
+    source_data= config["source_data"]
+    input_data= os.path.join(source_data["data_dir"],source_data["data_file"])
+
+    split= params["prepare"]["split"]
+    seed = params["prepare"]["seed"]
+    random.seed(seed)
+
+    artifacts= config["artifacts"]
+    prepare_data_dir_path = os.path.join(artifacts["ARTIFACTS_DIR"],artifacts["PREPARED_DATA"])
+
+    create_directories([prepare_data_dir_path])
+
 
 
 if __name__ == '__main__':
