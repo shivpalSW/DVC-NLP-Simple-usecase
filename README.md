@@ -1,11 +1,13 @@
 
 ## DVC NLP project 
 
-### Problem statement for NLP Project: If stackoverflow comments are belongs to "Python" language or not.It is a binary classification type of project
+### <style = italic> Problem statement for NLP Project: If stackoverflow comments are belongs to "Python" language or not.It is a binary classification type of project
 
 ## Reference Repository:
 
 1. [Official reference repo](https://github.com/iterative/example-get-started)
+2. [DVC Studio](https://studio.iterative.ai/)
+3. [My DVC Studio View](https://studio.iterative.ai/user/shivpalSW/projects/dvc-DL-tensorflow-aiops-lhrxwfrnmf)
 
 ### STEP 01- Create a repository by using template repository
 
