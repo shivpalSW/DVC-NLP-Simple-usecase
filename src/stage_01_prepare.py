@@ -19,7 +19,7 @@ logging.basicConfig(
 
 
 def main(config_path, params_path):
-    ## converting XML data to csv format
+    ## converting XML data to tsv format
     config = read_yaml(config_path)
     params = read_yaml(params_path)
     pass
@@ -35,6 +35,21 @@ def main(config_path, params_path):
     prepare_data_dir_path = os.path.join(artifacts["ARTIFACTS_DIR"],artifacts["PREPARED_DATA"])
 
     create_directories([prepare_data_dir_path])
+
+    train_data_path = os.path.join(prepare_data_dir_path,artifacts["TRAIN_DATA"])
+    test_data_path = os.path.join(prepare_data_dir_path,artifacts["TEST_DATA"])
+
+    encoding='utf8'
+    with open (input_data,encoding=encoding) as fd_in :
+        with open(train_data_path,"w",encoding= encoding) as fd_out_train :
+            with open (test_data_path,"w",encoding= encoding) as fd_out_test:
+                pass
+                #processed_posts(fd_in,fd_out_train,fd_out_test,"<python>",split)]
+
+    
+    
+                                  
+
 
 
 
