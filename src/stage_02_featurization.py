@@ -42,13 +42,13 @@ def main(config_path, params_path):
     # print(train_words[: 5])
 
     bag_of_words = CountVectorizer(
-        stop_words="enlish",
+        stop_words="english",
         max_features= max_features,
         ngram_range=(1,ngrams)
         )
 
     bag_of_words.fit(train_words)
-    train_words_binary_matrix = bag_of_words..transform(train_words)
+    train_words_binary_matrix = bag_of_words.transform(train_words)
 
     tfidf = TfidfTransformer(smooth_idf=False)
     tfidf.fit(train_words_binary_matrix)
