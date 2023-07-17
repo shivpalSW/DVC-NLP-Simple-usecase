@@ -1,4 +1,10 @@
 # add stages here 
+
+config:
+  global:
+    reflink: false
+
+
 stages:
   prepare_data:
       cmd: python src/stage_01_prepare.py --config=configs/config.yaml --params=params.yaml
