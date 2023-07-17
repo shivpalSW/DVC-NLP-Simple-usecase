@@ -7,7 +7,8 @@
 
 stages:
   prepare_data:
-    cmd: python src/stage_01_prepare.py --config=configs/config.yaml --params=params.yaml --no-reflink
+    cmd: python src/stage_01_prepare.py --config=configs/config.yaml --params=params.yaml 
+    no-reflink: true
     deps:
       - src/stage_01_prepare.py
       - data/data.xml
@@ -23,7 +24,8 @@ stages:
 
 
   featurize:
-    cmd: python src/stage_02_featurization.py --config=configs/config.yaml --params=params.yaml --no-reflink
+    cmd: python src/stage_02_featurization.py --config=configs/config.yaml --params=params.yaml 
+    no-reflink: true
     deps:
       - src/stage_02_featurization.py
       - artifacts/prepared/train.tsv
@@ -40,7 +42,8 @@ stages:
   
 
   train:
-    cmd: python src/stage_03_train.py --config=configs/config.yaml --params=params.yaml --no-reflink
+    cmd: python src/stage_03_train.py --config=configs/config.yaml --params=params.yaml 
+    no-reflink: true
     deps:
       - src/stage_03_train.py
       - artifacts/features/train.pkl
@@ -55,7 +58,8 @@ stages:
 
 
   evaluate:
-    cmd: python src/stage_04_evaluate.py --config=configs/config.yaml --no-reflink
+    cmd: python src/stage_04_evaluate.py --config=configs/config.yaml 
+    no-reflink: true
     deps:
       - src/stage_04_evaluate.py
       - artifacts/features/test.pkl
