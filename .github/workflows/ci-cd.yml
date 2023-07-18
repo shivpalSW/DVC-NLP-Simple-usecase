@@ -29,9 +29,9 @@ jobs:
           echo "# REPORTS" >> report.md
           echo "## metrics" >> report.md
           cat scores.json >> report.md
-        ##cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
+          
 
       - name: Comment on Last Commit
-        run: cml-send-comment report.md  ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT    
+        run: cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT   
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
