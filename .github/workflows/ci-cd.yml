@@ -15,11 +15,6 @@ jobs:
         with:
           python-version: '3.7'
 
-
-      - name: Comment on Last Commit
-        run: cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT   
-        env:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Update Node.js to v16
         run: sudo apt-get install -y nodejs npm
@@ -34,6 +29,11 @@ jobs:
           echo "# REPORTS" >> report.md
           echo "## metrics" >> report.md
           cat scores.json >> report.md
-          
+         
+      
+      - name: Comment on Last Commit
+        run: cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT   
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
 
 
