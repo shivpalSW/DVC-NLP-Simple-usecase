@@ -38,4 +38,4 @@ dvc init
 ### STEP 06- commit and push the changes to the remote repository
 
 #### Note: If error message indicates that the GitHub integration used for CML is not able to access the resource needed to create a comment. This can happen due to various reasons, but one common cause is insufficient permissions for the GitHub token used in the integration.Then you must Verify that the GitHub Actions bot (typically named "github-actions") has sufficient access to the repository. It should have at least "Write" access to create comments.
-![settings page](image.png)
+![settings page screenshot](image.png)
