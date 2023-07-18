@@ -15,9 +15,12 @@ jobs:
         with:
           python-version: '3.7'
 
-      - name: cml_run
-        env:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Update Node.js to v16
+        run: sudo apt-get install -y nodejs npm
+
+      - name: cml_run & Install Dependencies and Reproduce DVC
+
         run: |
           # Your ML workflow commands
           pip install --upgrade pip
@@ -26,4 +29,9 @@ jobs:
           echo "# REPORTS" >> report.md
           echo "## metrics" >> report.md
           cat scores.json >> report.md
-          cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
+        ##cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
+
+      - name: Comment on Last Commit
+        run: cml-send-comment report.md  ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT    
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
