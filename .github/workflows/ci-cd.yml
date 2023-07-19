@@ -1,41 +1,6 @@
 
 ###uncomment below lines to use CML
 
-# name: train-NLP-ML-usecase
-
-# on: [push]
-
-# jobs:
-#   run:
-#     runs-on: [ubuntu-latest]
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: iterative/setup-cml@v1
-#       - uses: actions/setup-python@v2
-#         with:
-#           python-version: '3.7'
-
-      
-#       - name: Update Node.js to v16
-#         run: sudo apt-get install -y nodejs npm
-
-#       - name: cml_run & Install Dependencies and Reproduce DVC
-
-#         run: |
-#           # Your ML workflow commands
-#           pip install --upgrade pip
-#           pip install -r requirements.txt
-#           dvc repro --force -v                        ## v >>> verbose
-#           echo "# REPORTS" >> report.md
-#           echo "## metrics" >> report.md
-#           cat scores.json >> report.md
-         
-      
-#       - name: Comment on Last Commit
-#         run: cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT   
-#         env:
-#          # repo_token: ${{secrets.GITHUB_TOKEN}}
-
 name: train-NLP-ML-usecase
 
 on: [push]
@@ -45,34 +10,31 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
+      - uses: iterative/setup-cml@v1
       - uses: actions/setup-python@v2
         with:
           python-version: '3.7'
+
       
       - name: Update Node.js to v16
         run: sudo apt-get install -y nodejs npm
 
-      - name: Setup DVC and CML
+      - name: cml_run & Install Dependencies and Reproduce DVC
+
         run: |
+          # Your ML workflow commands
           pip install --upgrade pip
           pip install -r requirements.txt
-          dvc exp run --pull 
-          dvc push
-          cml ci --fetch-depth 0
-          cml pr --squash --skip-ci .
-
-      - name: Generate Report
-        run: |
+          dvc repro --force -v                        ## v >>> verbose
           echo "# REPORTS" >> report.md
           echo "## metrics" >> report.md
           cat scores.json >> report.md
-          echo "## Params" >> report.md
-          dvc params diff main --md >> report.md
-          echo "## Metrics" >> report.md
-          dvc metrics diff main --md >> report.md
-
+         
+      
       - name: Comment on Last Commit
-        run: cml comment create --pr report.md
+        run: cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT   
         env:
           repo_token: ${{secrets.GITHUB_TOKEN}}
+
+
           
