@@ -21,23 +21,23 @@ stages:
     params:
       params.yaml:
         prepare.seed: 2021
-        prepare.split: 0.2
+        prepare.split: 0.3
     outs:
     - path: artifacts/prepared/test.tsv
-      md5: 60c757f3b30604473de7fa775dfc00d9
-      size: 4899778
+      md5: a0bb558cc0e08269228e02fb57edbdc0
+      size: 7248035
     - path: artifacts/prepared/train.tsv
-      md5: 553034c4cf40efc63c99c19fe98610d0
-      size: 18986541
+      md5: 3514ce5f1b8c8d976c178e0ad2ae1e78
+      size: 16638284
   featurize:
     cmd: python src/stage_02_featurization.py --config=configs/config.yaml --params=params.yaml
     deps:
     - path: artifacts/prepared/test.tsv
-      md5: 60c757f3b30604473de7fa775dfc00d9
-      size: 4899778
+      md5: a0bb558cc0e08269228e02fb57edbdc0
+      size: 7248035
     - path: artifacts/prepared/train.tsv
-      md5: 553034c4cf40efc63c99c19fe98610d0
-      size: 18986541
+      md5: 3514ce5f1b8c8d976c178e0ad2ae1e78
+      size: 16638284
     - path: configs/config.yaml
       md5: 28c91b4608db6b4d5754223f44a81a31
       size: 453
@@ -52,21 +52,21 @@ stages:
       size: 516
     params:
       params.yaml:
-        featurize.max_features: 2500
-        featurize.ngrams: 3
+        featurize.max_features: 1500
+        featurize.ngrams: 2
     outs:
     - path: artifacts/features/test.pkl
-      md5: 5c764778c31aa301497b7ad1ecef0555
-      size: 2630555
+      md5: f6a6c8a2352365219ffc434d00b4a84b
+      size: 3288843
     - path: artifacts/features/train.pkl
-      md5: 950005d878c5375fe141efe266aec291
-      size: 10246491
+      md5: 2c2154af16b217f23116e8cfe26a1d5d
+      size: 7607571
   train:
     cmd: python src/stage_03_train.py --config=configs/config.yaml --params=params.yaml
     deps:
     - path: artifacts/features/train.pkl
-      md5: 950005d878c5375fe141efe266aec291
-      size: 10246491
+      md5: 2c2154af16b217f23116e8cfe26a1d5d
+      size: 7607571
     - path: configs/config.yaml
       md5: 28c91b4608db6b4d5754223f44a81a31
       size: 453
@@ -78,22 +78,22 @@ stages:
       size: 979
     params:
       params.yaml:
-        train.min_split: 16
-        train.n_est: 100
+        train.min_split: 15
+        train.n_est: 90
         train.seed: 2021
     outs:
     - path: artifacts/model/model.pkl
-      md5: 7395ca0a2945199e1810935df697447d
-      size: 3516256
+      md5: 4b3bb3594dd6624b63693725d867c480
+      size: 2824848
   evaluate:
     cmd: python src/stage_04_evaluate.py --config=configs/config.yaml
     deps:
     - path: artifacts/features/test.pkl
-      md5: 5c764778c31aa301497b7ad1ecef0555
-      size: 2630555
+      md5: f6a6c8a2352365219ffc434d00b4a84b
+      size: 3288843
     - path: artifacts/model/model.pkl
-      md5: 7395ca0a2945199e1810935df697447d
-      size: 3516256
+      md5: 4b3bb3594dd6624b63693725d867c480
+      size: 2824848
     - path: configs/config.yaml
       md5: 28c91b4608db6b4d5754223f44a81a31
       size: 453
@@ -105,13 +105,13 @@ stages:
       size: 979
     outs:
     - path: prc.json
-      md5: 418a3e2bab054b1d1a781c984cf4a6c7
-      size: 132263
+      md5: 0d761afa74bae2abceaca8bae7950d88
+      size: 120294
     - path: roc.json
-      md5: 74fbeddda1825c11a5076e2144273e30
-      size: 84477
+      md5: faaee60a13c6ec5541703cf0b38b4de8
+      size: 137422
     - path: scores.json
-      md5: 53834d1663ca75f0c4890fc8da0798d7
+      md5: 209d9b96ab6148d2ff9993b0b7469971
       size: 76
   run_plots_command:
     cmd: dvc plots diff
