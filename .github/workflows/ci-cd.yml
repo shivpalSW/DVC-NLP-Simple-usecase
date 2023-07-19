@@ -56,7 +56,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
-          dvc exp run --pull --allow-missing
+          dvc exp run --pull 
           dvc push
           cml ci --fetch-depth 0
           cml pr --squash --skip-ci .
