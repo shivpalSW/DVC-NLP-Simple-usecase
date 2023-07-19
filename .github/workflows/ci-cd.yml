@@ -34,4 +34,4 @@ jobs:
       - name: Comment on Last Commit
         run: cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT   
         env:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{secrets.PERSONAL_ACCESS_TOKEN}}
