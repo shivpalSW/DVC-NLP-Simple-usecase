@@ -1,7 +1,7 @@
 
 ### dependency
 tqdm
-dvc==2.10.2
+dvc>=2.10.2
 dvc[s3]
 fsspec==2022.11.0
 pandas
