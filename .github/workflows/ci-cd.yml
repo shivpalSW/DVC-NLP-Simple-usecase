@@ -47,6 +47,9 @@ jobs:
   deploy-runner:
     runs-on: [ubuntu-latest]
     steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
       - uses: iterative/setup-cml@v1
       - uses: actions/checkout@v2
       - name: 'Deploy runner in EC2'
