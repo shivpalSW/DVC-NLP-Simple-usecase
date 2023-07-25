@@ -61,9 +61,8 @@ jobs:
           cml-runner \
           --cloud aws \
           --cloud-region us-west \
-          --cloud-type=m \              ### above line is for  medium size data .we may incure some chagrges from AWS (we can use t2.macro but run may fail )
+          --cloud-type=m \             
           --labels=cml-runner 
-
 
   model-training:
     needs: deploy-runner
@@ -85,5 +84,6 @@ jobs:
           echo "## metrics" >> report.md
           cat scores.json >> report.md
           cml comment create report.md # >> CML COMMAND USE TO COMMENT ON LAST COMMIT
+
 
 
