@@ -39,8 +39,6 @@
 
 
 ###uncomment below lines to use CML with AWS credentials
-
-
 name: train-NLP-ML-usecase
 
 on: [push]
@@ -59,10 +57,11 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           cml runner launch \
-          --cloud aws \
-          --cloud-region us-west \
-          --cloud-type m \             
-          --labels cml-runner 
+          --cloud=aws \
+          --cloud-region=us-west \
+          --cloud-type=m \
+          --labels=cml-runner 
+
 
   model-training:
     needs: deploy-runner
@@ -83,7 +82,7 @@ jobs:
           echo "# REPORTS" >> report.md
           echo "## metrics" >> report.md
           cat scores.json >> report.md
-          cml comment create --pr report.md # >> CML COMMAND USE TO COMMENT ON LAST COMMIT
+          cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
 
 
 
