@@ -2,91 +2,91 @@
 ####### uncomment below lines to use CML without AWS credentials
 ####### add ci-cd steps here
 
-# name: train-NLP-ML-usecase
-
-# on: [push]
-
-# jobs:
-#   run:
-#     runs-on: [ubuntu-latest]
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: iterative/setup-cml@v1
-#       - uses: actions/setup-python@v2
-#         with:
-#           python-version: '3.7'
-
-      
-#       - name: Update Node.js to v16
-#         run: sudo apt-get install -y nodejs npm
-
-#       - name: cml_run & Install Dependencies and Reproduce DVC
-
-#         run: |
-#           # Your ML workflow commands
-#           pip install --upgrade pip
-#           pip install -r requirements.txt
-#           dvc repro --force -v                        ## v >>> verbose
-#           echo "# REPORTS" >> report.md
-#           echo "## metrics" >> report.md
-#           cat scores.json >> report.md
-         
-    
-#       - name: Comment on Last Commit
-#         run: cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT   
-#         env:
-#           repo_token: ${{secrets.GITHUB_TOKEN}}
-
-
-###uncomment below lines to use CML with AWS credentials
 name: train-NLP-ML-usecase
 
 on: [push]
 
 jobs:
-  deploy-runner:
+  run:
     runs-on: [ubuntu-latest]
     steps:
-
-      - name: Update Node.js to v16
-        run : sudo apt-get install -y nodejs npm
-
+      - uses: actions/checkout@v2
       - uses: iterative/setup-cml@v1
-      - uses: actions/checkout@v2
-      - name: 'Deploy runner in EC2'
-        shell: bash
-        env:
-          REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          cml runner launch \
-          --cloud=aws \
-          --cloud-region=us-west \
-          --cloud-type=m \
-          --labels=cml-runner 
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
 
+      
+      - name: Update Node.js to v16
+        run: sudo apt-get install -y nodejs npm
 
-  model-training:
-    needs: deploy-runner
-    runs-on: [self-hosted, cml-runner]
-    container: docker://iterativeai/cml:0-dvc2-base1
-    steps:
-      - uses: actions/checkout@v2
-      - name: "Train my model"
-        env:
-          repo_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: cml_run & Install Dependencies and Reproduce DVC
+
         run: |
           # Your ML workflow commands
           pip install --upgrade pip
           pip install -r requirements.txt
-
-          dvc repro -v ## v >>> verbose
-
+          dvc repro --force -v                        ## v >>> verbose
           echo "# REPORTS" >> report.md
           echo "## metrics" >> report.md
           cat scores.json >> report.md
-          cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
+         
+    
+      - name: Comment on Last Commit
+        run: cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT   
+        env:
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+
+
+###uncomment below lines to use CML with AWS credentials
+# name: train-NLP-ML-usecase
+
+# on: [push]
+
+# jobs:
+#   deploy-runner:
+#     runs-on: [ubuntu-latest]
+#     steps:
+
+#       - name: Update Node.js to v16
+#         run : sudo apt-get install -y nodejs npm
+
+#       - uses: iterative/setup-cml@v1
+#       - uses: actions/checkout@v2
+#       - name: 'Deploy runner in EC2'
+#         shell: bash
+#         env:
+#           REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+#           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#         run: |
+#           cml runner launch \
+#           --cloud=aws \
+#           --cloud-region=us-west \
+#           --cloud-type=m \
+#           --labels=cml-runner 
+
+
+#   model-training:
+#     needs: deploy-runner
+#     runs-on: [self-hosted, cml-runner]
+#     container: docker://iterativeai/cml:0-dvc2-base1
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: "Train my model"
+#         env:
+#           repo_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+#         run: |
+#           # Your ML workflow commands
+#           pip install --upgrade pip
+#           pip install -r requirements.txt
+
+#           dvc repro -v ## v >>> verbose
+
+#           echo "# REPORTS" >> report.md
+#           echo "## metrics" >> report.md
+#           cat scores.json >> report.md
+#           cml comment create report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
 
 
 
