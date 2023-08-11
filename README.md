@@ -1,5 +1,20 @@
 ## DVC NLP project 
-#### Problem statement for NLP Project: If stackoverflow comments are belongs to "Python" language or not.It is a binary classification type of project
+In this NLP (Natural Language Processing) project, we address the challenge of classifying Stack Overflow comments as belonging to the 'Python' programming language or not. This project revolves around a binary classification task, where we leverage the power of NLP and machine learning techniques to make informed decisions
+
+#### Key Tools and Technologies:
+
+1. Python
+2. NLP (Natural Language Processing)
+3. AWS (Amazon Web Services)
+4. Continuous Integration (CI) and Continuous Deployment (CD)
+5. GitHub Actions
+6. AWS S3
+7. AWS EC2
+8. DVC (Data Version Control)
+9. DVC Studio
+10. Data Pipeline Management
+
+Through the synergy of Python programming, NLP methodologies, AWS cloud capabilities, and modern CI/CD practices, I explore the dynamic world of NLP-based binary classification
 
 ## Reference Repository:
 
