@@ -1,5 +1,5 @@
 ## DVC NLP project 
-In this NLP (Natural Language Processing) project, we address the challenge of classifying Stack Overflow comments as belonging to the 'Python' programming language or not. This project revolves around a binary classification task, where we leverage the power of NLP and machine learning techniques to make informed decisions
+In this NLP (Natural Language Processing) project, I address the challenge of classifying Stack Overflow comments as belonging to the 'Python' programming language or not. This project revolves around a binary classification task, where I leverage the power of NLP and machine learning techniques to make informed decisions
 
 #### Key Tools and Technologies:
 
